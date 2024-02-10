@@ -48,7 +48,7 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 
 // connections and listeners
 const PORT = process.env.PORT || 5003;
-const DB_URL = process.env.MONGODB_URL || "mongodb+srv://dananvm:VqfhvixYVEPabqZW@cluster0.l6nmsq4.mongodb.net/ai-chatbot?retryWrites=true&w=majority";
+const DB_URL = process.env.MONGODB_URL;
 const dbConnect = async () => {
     let dbCon = false;
 
