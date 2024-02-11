@@ -13,10 +13,10 @@ const Logo: FC = () => {
         }}
         >
          <Link to={"/"}>
-             <img src={"openai.png"}
+             <img src={"openai1.png"}
                   alt="openai"
-                  width={"30px"}
-                  height={"30px"}
+                  width={"70px"}
+                  height={"50px"}
                   className="image-inverted"
                   />
          </Link>

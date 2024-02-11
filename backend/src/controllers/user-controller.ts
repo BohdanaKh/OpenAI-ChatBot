@@ -42,7 +42,7 @@ export const userSignup = async (req: Request, res: Response, next: NextFunction
             httpOnly: true,
             signed: true,
         });
-        return res.status(201).json({message: "Welcome!", id: user._id.toString()});
+        return res.status(201).json({message: "Welcome!", name: user.name, email: user.email});
     } catch (e) {
         console.log(e);
         return res.sendStatus(200).json({message: "Error", cause: e.message});
@@ -79,9 +79,24 @@ res.cookie(COOKIE_NAME, token, {
     signed: true,
 });
 
-        return res.status(200).json({message: "OK", id: user._id.toString()});
+        return res.status(200).json({message: "OK", name: user.name, email: user.email});
     } catch (e) {
         console.log(e);
         return res.sendStatus(200).json({message: "Error", cause: e.message});
     }
+}
+
+export const verifyUser = async (req: Request, res: Response, next: NextFunction) => {
+try {
+    const user = await User.findById(res.locals.jwtData.id);
+    if (!user) {
+        return res.status(401).send("User is not registered OR Token malfunctioned");
+    }
+    if (user._id.toString() !== res.locals.jwtData.id){
+        return res.status(401).send("Permissions didn't match");
+    }
+    return res.status(200).json({message: "OK", name: user.name, email: user.email});
+} catch (e) {
+    return res.status(401).json({message: "ERROR", cause: e.message})
+}
 }
