@@ -1,16 +1,7 @@
-import {FC} from 'react';
+import { FC } from "react";
 
-interface IProps {
-
-}
-
-const NotFound: FC<IProps> = () => {
-
-    return (
-        <div>
-            NotFound
-        </div>
-    );
+const NotFound: FC = () => {
+  return <div>Page is not found.</div>;
 };
 
-export {NotFound};
+export { NotFound };
